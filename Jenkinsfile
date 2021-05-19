@@ -6,8 +6,9 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                  git 'https://github.com/DominikHubert/jenkins.git'
+                sh "pylint *.py"
             withMaven {
-                 sh "mvn clean install checkstyle:checkstyle"
+                // sh "mvn clean install checkstyle:checkstyle"
                 // some block
                 }
                 // Run Maven on a Unix agent.
