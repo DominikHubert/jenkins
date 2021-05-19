@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                 // git 'https://github.com/DominikHubert/jenkins.git'
+                 git 'https://github.com/cameronmcnz/rps-boot.git'
             withMaven {
                  sh "mvn clean install checkstyle:checkstyle"
                 // some block
