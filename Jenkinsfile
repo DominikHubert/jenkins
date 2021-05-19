@@ -8,7 +8,7 @@ pipeline {
                  // git 'https://github.com/DominikHubert/jenkins.git'
                  sh 'ls'
                  //sh 'pylint pylint --disable=R,C0305 test.py'
-                sh 'flake8 --format=pylint --exit-zero test.py >flake8-out.txt'
+                sh 'flake8 --format=pylint --exit-zero >flake8-out.txt'
             withMaven {
                 // sh "mvn clean install checkstyle:checkstyle"
                 // some block
