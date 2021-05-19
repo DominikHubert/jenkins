@@ -7,7 +7,7 @@ pipeline {
                 // Get some code from a GitHub repository
                  // git 'https://github.com/DominikHubert/jenkins.git'
                  sh 'ls'
-                 sh 'pylint *.py'
+                 sh 'pylint pylint --disable=R,C0305 test.py'
             withMaven {
                 // sh "mvn clean install checkstyle:checkstyle"
                 // some block
