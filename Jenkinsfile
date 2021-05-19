@@ -11,13 +11,7 @@ pipeline {
                 sh 'flake8 --format=pylint --exit-zero'
            
             }
-        }
-        stage('build') {
-            steps {
-                echo "Build"
-            }
-        }
-        
+             
 
             post {
                 always{
@@ -26,5 +20,12 @@ pipeline {
                 recordIssues(tools: [flake8()])
                 }
             }
+        }
+        stage('build') {
+            steps {
+                echo "Build"
+            }
+        }
+       
         }
 }
