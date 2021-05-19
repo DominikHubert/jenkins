@@ -26,6 +26,16 @@ pipeline {
                 echo "Build"
             }
         }
+        stage('deploy') {
+            steps {
+                echo "deploy"
+            }
+        }
+        stage('dynamic test') {
+            steps {
+                echo "dynamic test"
+            }
+        }
        
         }
 }
