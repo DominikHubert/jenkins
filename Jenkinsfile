@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                  git 'https://github.com/DominikHubert/jenkins.git'
-                 sh 'python -m pylint --rcfile=.pylintrc --exit-zero ${MODULE} > ${WORKSPACE}/testreport/pylint.log'
+                 sh 'pylint'
             withMaven {
                 // sh "mvn clean install checkstyle:checkstyle"
                 // some block
