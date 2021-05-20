@@ -34,8 +34,8 @@ pipeline {
             steps {
                 script {
                 echo "deploy"
-                   docker.image('app').withRun {
-                        sleep 10
+                   docker.image('app').withRun('-p 8081:80') {
+                        sleep 60
                     }
                 }      
             }
