@@ -24,7 +24,7 @@ pipeline {
         stage('build') {
             steps {
                 echo "Build"
-                //docker.build "app"
+                def app = docker.build "app"
                 sh 'docker build . -t demosite'
             }
         }
