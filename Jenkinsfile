@@ -32,7 +32,12 @@ pipeline {
         }
         stage('deploy') {
             steps {
+                script {
                 echo "deploy"
+                   docker.image('app').withRun {
+                        sleep 10
+                    }
+                }      
             }
         }
         stage('dynamic test') {
