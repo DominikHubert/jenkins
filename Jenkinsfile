@@ -24,7 +24,7 @@ pipeline {
         stage('build') {
             steps {
                 echo "Build"
-                app = docker.build("getintodevops/hellonode")
+                sh 'docker build . -t demosite'
             }
         }
         stage('deploy') {
