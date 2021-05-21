@@ -48,7 +48,11 @@ pipeline {
         }
         stage('dynamic test') {
             steps {
-                echo "dynamic test"
+                script { 
+                docker.withRegistry('https://registry.hub.docker.com', 'docker') {  
+                app.push("latest")     
+                }   
+              }    
             }
         }
        
