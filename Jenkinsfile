@@ -27,9 +27,7 @@ pipeline {
                 echo "Build"
                 def app = docker.build "app"
                 //sh 'docker build . -t demosite'
-                app.inside {
-                        sh 'echo "Tests passed"'
-                    }
+                
                 }
                 
             }
