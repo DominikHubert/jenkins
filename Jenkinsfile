@@ -50,6 +50,7 @@ pipeline {
                 stage('Test'){
                     steps {
                         script {
+                            sleep 30
                             echo "Test"
                             sh 'python test.py'
                         }      
