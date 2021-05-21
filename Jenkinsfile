@@ -43,6 +43,7 @@ pipeline {
                     
                         docker.image('app').withRun('-p 8081:80') {
                             sleep 30
+                            sh 'curl localhost:8081'
                             }
                         }      
                     }
