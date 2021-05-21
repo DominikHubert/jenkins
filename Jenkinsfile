@@ -38,7 +38,7 @@ pipeline {
                         script {
                         echo "deploy"
                     
-                        docker.image('app').withRun('-p 8081:80') {
+                        docker.image('dkowatsch/app').withRun('-p 8081:80') {
                             sh 'curl localhost:8081'
                             }
                         }      
