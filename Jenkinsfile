@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                 echo "Build"
-                app = docker.build "app"
+                app = docker.build "dkowatsch/app"
                 //sh 'docker build . -t demosite'
                 
                 }
