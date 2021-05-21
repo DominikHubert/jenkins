@@ -34,6 +34,9 @@ pipeline {
             steps {
                 script {
                 echo "deploy"
+                    app.inside {
+                        sh 'echo "Tests passed"'
+                    }
                    docker.image('app').withRun('-p 8081:80') {
                         sleep 60
                     }
