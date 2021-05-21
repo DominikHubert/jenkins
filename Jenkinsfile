@@ -35,30 +35,18 @@ pipeline {
             }
         }
         stage('deploy and test') {
-            parallel {
-                stage('Deploy') {
+           
                     steps {
                         script {
                         echo "deploy"
                     
                         docker.image('app').withRun('-p 8081:80') {
-                            sleep 30
                             sh 'curl localhost:8081'
                             }
                         }      
                     }
-                }
-                stage('Test'){
-                    steps {
-                        script {
-                            sleep 10
-                            echo "Test"
-                            def ausgabe = sh 'curl localhost:8081'
-                            echo ausgabe
-                        }      
-                    }
-                }
-            }
+                
+            
         }
         stage('dynamic test') {
             steps {
