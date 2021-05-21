@@ -36,8 +36,8 @@ pipeline {
         }
         stage('deploy and test') {
             parallel {
-                stage{
-                    steps("Run") {
+                stage('Deploy') {
+                    steps {
                         script {
                         echo "deploy"
                     
@@ -47,8 +47,8 @@ pipeline {
                         }      
                     }
                 }
-                stage{
-                    steps("Test") {
+                stage('Test'){
+                    steps {
                         script {
                             echo "Test"
                             sh 'python test.py'
