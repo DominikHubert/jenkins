@@ -28,15 +28,16 @@ pipeline {
                 def app = docker.build "app"
                 //sh 'docker build . -t demosite'
                 }
+                app.inside {
+                        sh 'echo "Tests passed"'
+                    }
             }
         }
         stage('deploy') {
             steps {
                 script {
                 echo "deploy"
-                    app.inside {
-                        sh 'echo "Tests passed"'
-                    }
+                    
                    docker.image('app').withRun('-p 8081:80') {
                         sleep 60
                     }
