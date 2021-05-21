@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script { 
                 docker.withRegistry('https://registry.hub.docker.com', 'docker') {  
-                app.push("latest")     
+                app.push("dkowatsch/jenkins:latest")     
                 }   
               }    
             }
