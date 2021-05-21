@@ -34,15 +34,26 @@ pipeline {
                 
             }
         }
-        stage('deploy') {
-            steps {
-                script {
-                echo "deploy"
+        stage('deploy and test') {
+            parallel {
+                steps("Run") {
+                    script {
+                    echo "deploy"
                     
-                   docker.image('app').withRun('-p 8081:80') {
+                    docker.image('app').withRun('-p 8081:80') {
                         sleep 60
-                    }
-                }      
+                        }
+                    }      
+                }
+                steps("Test") {
+                    script {
+                    echo "Test"
+                    
+                    docker.image('app').withRun('-p 8081:80') {
+                        sleep 60
+                        }
+                    }      
+                }
             }
         }
         stage('dynamic test') {
