@@ -52,7 +52,7 @@ pipeline {
                         script {
                             sleep 30
                             echo "Test"
-                            sh 'python test.py'
+                            sh 'curl localhost:8081'
                         }      
                     }
                 }
