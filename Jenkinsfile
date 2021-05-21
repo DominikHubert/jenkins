@@ -48,10 +48,7 @@ pipeline {
                 steps("Test") {
                     script {
                     echo "Test"
-                    
-                    docker.image('app').withRun('-p 8081:80') {
-                        sleep 60
-                        }
+                        sh 'python test.py'
                     }      
                 }
             }
