@@ -50,7 +50,7 @@ pipeline {
                 stage('Test'){
                     steps {
                         script {
-                            sleep 30
+                            sleep 10
                             echo "Test"
                             sh 'curl localhost:8081'
                         }      
