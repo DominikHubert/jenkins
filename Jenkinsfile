@@ -42,7 +42,7 @@ pipeline {
                         echo "deploy"
                     
                         docker.image('app').withRun('-p 8081:80') {
-                            sleep 60
+                            sleep 120
                             }
                         }      
                     }
