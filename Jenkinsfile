@@ -36,20 +36,24 @@ pipeline {
         }
         stage('deploy and test') {
             parallel {
-                steps("Run") {
-                    script {
-                    echo "deploy"
+                stage{
+                    steps("Run") {
+                        script {
+                        echo "deploy"
                     
-                    docker.image('app').withRun('-p 8081:80') {
-                        sleep 60
-                        }
-                    }      
+                        docker.image('app').withRun('-p 8081:80') {
+                            sleep 60
+                            }
+                        }      
+                    }
                 }
-                steps("Test") {
-                    script {
-                    echo "Test"
-                        sh 'python test.py'
-                    }      
+                stage{
+                    steps("Test") {
+                        script {
+                            echo "Test"
+                            sh 'python test.py'
+                        }      
+                    }
                 }
             }
         }
@@ -59,5 +63,5 @@ pipeline {
             }
         }
        
-        }
+    }
 }
