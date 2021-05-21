@@ -53,6 +53,7 @@ pipeline {
                             sleep 10
                             echo "Test"
                             def ausgabe = sh 'curl localhost:8081'
+                            echo ausgabe
                         }      
                     }
                 }
