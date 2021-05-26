@@ -14,30 +14,13 @@ pipeline {
     }
     post {
         always {
+            recordIssues(tools: [hadoLint(pattern: 'hadolint_lint.txt')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
+                
             archiveArtifacts 'hadolint_lint.txt'
         }
     }
 }
-        stage('linting') {
-            steps {
-                // Get some code from a GitHub repository
-                 // git 'https://github.com/DominikHubert/jenkins.git'
-                 sh 'ls'
-                 //sh 'pylint pylint --disable=R,C0305 test.py'
-                //sh 'flake8 --format=pylint --exit-zero'
-                sh 'docker run --rm -i hadolint/hadolint < Dockerfile > log.txt'
-            }
-             
-
-            post {
-                always{
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                //recordIssues(tools: [flake8()], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
-                recordIssues(tools: [hadoLint(pattern: '*.txt')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
-                }
-            }
-        }
+        
         stage('build') {
             steps {
                 script {
