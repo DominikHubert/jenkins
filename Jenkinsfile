@@ -10,7 +10,7 @@ pipeline {
                  //sh 'pylint pylint --disable=R,C0305 test.py'
                 //sh 'flake8 --format=pylint --exit-zero'
                 script{
-                    docker.image('hadolint/hadolint').withRun('--rm -i < Dockerfile'){
+                    docker.image('hadolint/hadolint').withRun('--rm -i < Dockerfile > log.log'){
                         
                     }
                 }
@@ -22,7 +22,7 @@ pipeline {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 //recordIssues(tools: [flake8()], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
-                recordIssues(tools: [hadoLint()], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
+                recordIssues(tools: [hadoLint(pattern: '*.log')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
                 }
             }
         }
