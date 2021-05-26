@@ -9,11 +9,7 @@ pipeline {
                  sh 'ls'
                  //sh 'pylint pylint --disable=R,C0305 test.py'
                 //sh 'flake8 --format=pylint --exit-zero'
-                script{
-                    docker.image('hadolint/hadolint').withRun('--rm -i < Dockerfile > log.log'){
-                        
-                    }
-                }
+                sh 'docker run --rm -i hadolint/hadolint < Dockerfile > log.log'
             }
              
 
