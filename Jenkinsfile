@@ -10,11 +10,11 @@ pipeline {
         }
     }
     steps {
-        sh 'hadolint Dockerfile | tee -a hadolint_lint.txt'
+        sh 'hadolint Dockerfile | tee -a hadolint_lint.json'
     }
     post {
         always {
-            recordIssues(tools: [hadoLint()], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
+            recordIssues(tools: [hadoLint(pattern: '*.json')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
                 
             archiveArtifacts 'hadolint_lint.txt'
         }
