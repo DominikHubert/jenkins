@@ -10,13 +10,13 @@ pipeline {
         }
     }
     steps {
-        sh 'hadolint Dockerfile | tee -a hadolint_lint.json'
+        sh 'hadolint Dockerfile | tee -a hadolint_lint.xml'
     }
     post {
         always {
             recordIssues(tools: [hadoLint(pattern: 'checkstyle-results.xml')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
                 
-            archiveArtifacts 'hadolint_lint.txt'
+            archiveArtifacts 'hadolint_lint.xml'
         }
     }
 }
