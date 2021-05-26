@@ -14,7 +14,7 @@ pipeline {
     }
     post {
         always {
-            recordIssues(tools: [hadoLint(pattern: '*.xml')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
+            recordIssues(tools: [hadoLint(pattern: 'hadolint.json')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
                 
             archiveArtifacts 'hadolint_lint.xml'
         }
