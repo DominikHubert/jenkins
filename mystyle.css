@@ -8,6 +8,9 @@
 .media-example{
 font-weight:strong;
 }
- 
+h1 {
+  color: navy;
+  margin-left: 20px;
+}
 }
   
