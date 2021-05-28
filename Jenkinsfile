@@ -17,21 +17,6 @@ pipeline {
                 }
             }
         }
-        stage ("lint dockerfile") {
-            agent {
-                docker {
-                    image 'hadolint/hadolint:latest-debian'
-                }
-            }
-            steps {
-                sh 'hadolint Dockerfile | tee -a hadolint.xml'
-            }
-            post {
-                always {
-                    archiveArtifacts 'hadolint.xml'
-                }
-            }
-        }
         stage('linting') {
             steps {
                 // Get some code from a GitHub repository
