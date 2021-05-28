@@ -23,7 +23,7 @@ pipeline {
                  // git 'https://github.com/DominikHubert/jenkins.git'
                  sh 'ls'
                  //sh 'pylint pylint --disable=R,C0305 test.py'
-                sh 'csslint mystyle.css > results.xml'
+                sh 'csslint --format=checkstyle-xml mystyle.css > results.xml'
                 
             }
              
