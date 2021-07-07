@@ -18,16 +18,14 @@ pipeline {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 recordIssues(tools: [cssLint(pattern: 'results.xml')], qualityGates: [[threshold: 1, type: 'TOTAL']], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
-                if (!continueBuild) {
-                    currentBuild.result = 'ABORTED'
-                error('Stopping early…')
-                }
+               
                 //recordIssues(tools: [cssLint(pattern: 'results.xml')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH')
                 archiveArtifacts 'results.xml'
                 }
             }
         }
         stage('build') {
+            when { expression { return currentBuild.currentResult == "SUCCESS" } }
             steps {
                 script {
                 echo "Build"
